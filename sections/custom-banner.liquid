@@ -8,12 +8,12 @@
 %}
 
 {% style %}
-  .gift-banner__content.background-box{
+  .gift-banner-{{ section.id }} .gift-banner__content.background-box{
     background: {{  section.settings.container_color }};
   }
 {% endstyle %}
 
-<div class="gift-banner banner__overlay--{{ section.settings.content_position }}">
+<div class="gift-banner banner__overlay--{{ section.settings.content_position }} gift-banner-{{ section.id }}">
   <div class="gift-banner__content {% if section.settings.active_container %} background-box {% endif %}">
     <div class="gift-banner__content-inner">
       {% if section.settings.heading != blank %}
