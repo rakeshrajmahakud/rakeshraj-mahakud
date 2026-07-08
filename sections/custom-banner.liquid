@@ -8,7 +8,7 @@
 %}
 
 <div class="gift-banner banner__overlay--{{ section.settings.content_position }}">
-  <div class="gift-banner__content">
+  <div class="gift-banner__content {% if section.settings.active_container %} background-box {% endif %}">
     <div class="gift-banner__content-inner">
       {% if section.settings.heading != blank %}
         <h2 class="{{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
