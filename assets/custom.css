@@ -1,0 +1,106 @@
+:root {
+  --custom-color-button: #000;
+  --custom-color-button-text:#fff;
+  --custom-color-base-accent-1:#FFF544;
+
+  --rm-btn-bg: var(--custom-color-button);
+  --rm-btn-color: var(--custom-color-button-text);
+
+  --rm-btn-hover-bg: var(--custom-color-base-accent-1);
+  --rm-btn-hover-color: var(--custom-color-button);
+}
+/* ====custom button======= */
+.rm-btn {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  padding: 1.6rem 3rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  /* transition: color 0.35s ease, border-color 0.35s ease; */
+  transition: color 0.35s ease;
+  z-index: 1;
+  width: fit-content;
+}
+.rm-btn span,
+.rm-btn svg {
+  position: relative;
+  z-index: 2;
+}
+.rm-btn svg {
+  width: 2rem;
+  height: 2rem;
+  transition: transform 0.35s ease;
+}
+.rm-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--rm-btn-hover-bg);
+  transform: translateX(-101%);
+  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.rm-btn:hover::before {
+  transform: translateX(0);
+  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* PRIMARY BUTTON */
+.rm-btn--primary {
+  background: var(--rm-btn-bg);
+  color: var(--rm-btn-color);
+  /* border: 1px solid var(--rm-btn-bg); */
+}
+.rm-btn--primary::before {
+  background: var(--rm-btn-hover-bg);
+}
+.rm-btn--primary:hover {
+  color: var(--rm-btn-hover-color);
+  /* border: 1px solid var(--rm-btn-hover-bg); */
+}
+.rm-btn--primary.rm-btn svg path{
+  fill:  var(--rm-btn-color);
+}
+.rm-btn--primary.rm-btn:hover svg path{ 
+  fill:  var(--rm-btn-bg);
+}
+
+/* SECONDARY BUTTON */
+.rm-btn--secondary {
+  background: transparent;
+  color: var(--rm-btn-bg);
+  border: 1px solid var(--rm-btn-bg);
+}
+.rm-btn--secondary::before {
+  background: var(--rm-btn-bg);
+}
+.rm-btn--secondary:hover {
+  color: var(--rm-btn-color);
+}
+.rm-btn--secondary.rm-btn svg path{
+  fill:  var(--rm-btn-bg);
+}
+.rm-btn--secondary.rm-btn:hover svg path{ 
+  fill:  var(--rm-btn-color);
+}
+
+/* ========headings====== */
+.h1,h1,.h2,h2,.h3,h3,.h4,h4,.h5,h5{
+  margin: 0;
+}
+.hxl {
+  font-size: calc(var(--font-heading-scale) * 3rem);
+}
+@media screen and (min-width:750px){
+  .hxl {
+    font-size: calc(var(--font-heading-scale) * 7rem);
+  }
+}
+
