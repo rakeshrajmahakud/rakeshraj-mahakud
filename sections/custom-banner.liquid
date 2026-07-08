@@ -218,7 +218,6 @@
   .gift-banner__content {
     gap: 5rem;
     padding: 5rem;
-    position: absolute;
     z-index: 1;
   }
   .gift-banner__content-inner {
@@ -234,6 +233,9 @@
     }
   }
   @media screen and (min-width: 750px) {
+    .gift-banner__content{
+      position: absolute;
+    }
     .gift-banner {
       flex-direction: row;
     }
