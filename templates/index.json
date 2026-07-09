@@ -22,9 +22,53 @@
         "container_color": "#ffffff",
         "content_position": "bottom-left"
       }
+    },
+    "rich_text_ahrfLH": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_ggJPGC": {
+          "type": "heading",
+          "settings": {
+            "heading": "Talk about your brand",
+            "heading_size": "h1"
+          }
+        },
+        "text_MJrL8V": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+          }
+        },
+        "button_9NRgyj": {
+          "type": "button",
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_ggJPGC",
+        "text_MJrL8V",
+        "button_9NRgyj"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
-    "custom_banner_LyxXyR"
+    "custom_banner_LyxXyR",
+    "rich_text_ahrfLH"
   ]
 }
