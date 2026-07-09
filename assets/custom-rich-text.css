@@ -1,0 +1,16 @@
+.custom__rich-text-inner *{
+  padding:0;
+  margin:0;
+}
+.custom__rich-text-inner{
+  width: 100%;
+  text-align:center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width:749px){
+  .custom__rich-text-inner p{
+    font-size: 14px;
+  }
+}
