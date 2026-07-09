@@ -17,7 +17,7 @@
   align-items: center;
   justify-content: center;
   gap: 1.2rem;
-  padding: 1.6rem 3rem;
+  padding: 1.4rem 3rem;
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1;
@@ -56,14 +56,12 @@
 .rm-btn--primary {
   background: var(--rm-btn-bg);
   color: var(--rm-btn-color);
-  /* border: 1px solid var(--rm-btn-bg); */
 }
 .rm-btn--primary::before {
   background: var(--rm-btn-hover-bg);
 }
 .rm-btn--primary:hover {
   color: var(--rm-btn-hover-color);
-  /* border: 1px solid var(--rm-btn-hover-bg); */
 }
 .rm-btn--primary.rm-btn svg path{
   fill:  var(--rm-btn-color);
@@ -74,9 +72,9 @@
 
 /* SECONDARY BUTTON */
 .rm-btn--secondary {
-  background: transparent;
+  padding: 1.1rem 3rem;
+  background: var(--rm-btn-hover-bg); 
   color: var(--rm-btn-bg);
-  border: 1px solid var(--rm-btn-bg);
 }
 .rm-btn--secondary::before {
   background: var(--rm-btn-bg);

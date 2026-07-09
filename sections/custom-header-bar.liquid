@@ -1,0 +1,277 @@
+{{ 'custom-header-bar.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign logo = section.settings.logo
+%}
+
+{% style %}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+  .top-bar-{{ section.id }} .top-bar__logo-image {
+    width: {{ section.settings.logo_width }}px;
+  }
+  @media screen and (max-width:749px){
+    .top-bar-{{ section.id }} .top-bar__logo-image {
+      width: {{ section.settings.logo_width_mobile }}px;
+    }
+  }
+{% endstyle %}
+
+<top-bar-section>
+  <div
+    class="top-bar top-bar-{{ section.id }} color-{{ section.settings.color_scheme }} gradient"
+    id="TopBar-{{ section.id }}"
+  >
+    <div class="top-bar__desktop page-width section-{{ section.id }}-padding ">
+      <div class="top-bar__desktop-logo">
+        <a
+          href="{{ routes.root_url }}"
+          class="top-bar__logo-link"
+          aria-label="{{ shop.name }}"
+        >
+          {% if logo != blank %}
+            {{
+              logo
+              | image_url: width: section.settings.logo_width
+              | image_tag: class: 'top-bar__logo-image', loading: 'lazy', widths: '120,180,240,300,400'
+            }}
+          {% else %}
+            <span class="top-bar__logo-placeholder">
+              {{ shop.name }}
+            </span>
+          {% endif %}
+        </a>
+      </div>
+
+      <div class="top-bar__desktop-content">
+        {% if section.settings.text != blank %}
+          <p class="top-bar__text">
+            {{ section.settings.text }}
+          </p>
+        {% endif %}
+      </div>
+
+      <div class="top-bar__desktop-button">
+        {% if section.settings.button_text != blank %}
+          <a
+            href="{{ section.settings.button_link }}"
+            class=" rm-btn rm-btn--secondary"
+          >
+            <span class="top-bar__button-label">
+              {{ section.settings.button_text }}
+            </span>
+
+            <span class="top-bar__button-icon">
+              {% render 'icon-arrow-right' %}
+            </span>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Mobile Header -->
+    <div class="top-bar__mobile page-width section-{{ section.id }}-padding ">
+      <button
+        class="top-bar__toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="TopBarDrawer-{{ section.id }}"
+      >
+        <span class="top-bar__hamburger">
+          {% render 'hamburger' %}
+        </span>
+      </button>
+      <button
+        class="top-bar__close"
+        type="button"
+        aria-label="Close announcement"
+      >
+        {% render 'close-btn' %}
+      </button>
+
+      <a
+        href="{{ routes.root_url }}"
+        class="top-bar__logo-link"
+        aria-label="{{ shop.name }}"
+      >
+        {% if logo != blank %}
+          {{
+            logo
+            | image_url: width: section.settings.logo_width_mobile
+            | image_tag: class: 'top-bar__logo-image', loading: 'lazy', widths: '120,180,240'
+          }}
+        {% else %}
+          <span class="top-bar__logo-placeholder">
+            {{ shop.name }}
+          </span>
+        {% endif %}
+      </a>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div
+      class="top-bar__drawer"
+      id="TopBarDrawer-{{ section.id }}"
+    >
+      <div class="top-bar__drawer-body">
+        {% if section.settings.text != blank %}
+          <div class="top-bar__drawer-text">
+            {{ section.settings.text }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.button_text != blank %}
+          <a
+            href="{{ section.settings.button_link }}"
+            class="rm-btn rm-btn--secondary"
+          >
+            <span class="top-bar__button-label">
+              {{ section.settings.button_text }}
+            </span>
+
+            <span class="top-bar__button-icon">
+              {% render 'icon-arrow-right' %}
+            </span>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</top-bar-section>
+
+{% schema %}
+{
+  "name": "Custom header bar",
+  "tag": "section",
+  "class": "section-top-bar",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "Logo Width (Desktop)",
+      "min": 60,
+      "max": 400,
+      "step": 10,
+      "default": 220,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "logo_width_mobile",
+      "label": "Logo Width (Mobile)",
+      "min": 60,
+      "max": 300,
+      "step": 10,
+      "default": 180,
+      "unit": "px"
+    },
+
+    {
+      "type": "header",
+      "content": "Announcement"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Announcement Text",
+      "default": "Find the ideal gift for your loved ones."
+    },
+
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "CHOOSE GIFT"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Drawer"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_mobile_drawer",
+      "label": "Enable Mobile Drawer",
+      "default": true
+    },
+
+    {
+      "type": "header",
+      "content": "Section Options"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full Width",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_bar",
+      "label": "Sticky Top Bar",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 52
+    },
+  ],
+  "presets": [
+    {
+      "name": "Custom header bar"
+    }
+  ]
+}
+{% endschema %}

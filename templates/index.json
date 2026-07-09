@@ -9,6 +9,24 @@
  */
 {
   "sections": {
+    "custom_header_bar_JP8exK": {
+      "type": "custom-header-bar",
+      "name": "Custom header bar",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "logo": "shopify://shop_images/logo-svg.svg",
+        "logo_width": 150,
+        "logo_width_mobile": 130,
+        "text": "Find the ideal gift for your loved ones.",
+        "button_text": "CHOOSE GIFT",
+        "button_link": "",
+        "enable_mobile_drawer": true,
+        "full_width": true,
+        "sticky_bar": false,
+        "padding_top": 10,
+        "padding_bottom": 10
+      }
+    },
     "custom_banner_LyxXyR": {
       "type": "custom-banner",
       "name": "Custom Banner",
@@ -35,6 +53,7 @@
     }
   },
   "order": [
+    "custom_header_bar_JP8exK",
     "custom_banner_LyxXyR",
     "custom_rich_text_QxV3jW"
   ]
