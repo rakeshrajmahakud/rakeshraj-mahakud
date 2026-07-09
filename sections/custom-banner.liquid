@@ -12,54 +12,54 @@
     background: {{ section.settings.container_color }};
   }
 {% endstyle %}
+<div class="gift-banner-{{ section.id }}">
+  <div class="gift-banner banner__overlay--{{ section.settings.content_position }}">
+    <div class="gift-banner__content {% if section.settings.active_container %} background-box {% endif %}">
+      <div class="gift-banner__content-inner">
+        {% if section.settings.heading != blank %}
+          <h2 class="{{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+        {% endif %}
 
-<div class="gift-banner banner__overlay--{{ section.settings.content_position }} gift-banner-{{ section.id }}">
-  <div class="gift-banner__content {% if section.settings.active_container %} background-box {% endif %}">
-    <div class="gift-banner__content-inner">
-      {% if section.settings.heading != blank %}
-        <h2 class="{{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
-      {% endif %}
-
-      {% if section.settings.text != blank %}
-        <div class="rte">
-          {{ section.settings.text }}
-        </div>
-      {% endif %}
-      {% if section.settings.button_label != blank %}
-        <a
-          href="{{ section.settings.button_link }}"
-          class="rm-btn rm-btn--primary"
-        >
-          <span>{{ section.settings.button_label }}</span>
-          {% render 'icon-arrow-right' %}
-        </a>
-      {% endif %}
+        {% if section.settings.text != blank %}
+          <div class="rte">
+            {{ section.settings.text }}
+          </div>
+        {% endif %}
+        {% if section.settings.button_label != blank %}
+          <a
+            href="{{ section.settings.button_link }}"
+            class="rm-btn rm-btn--primary"
+          >
+            <span>{{ section.settings.button_label }}</span>
+            {% render 'icon-arrow-right' %}
+          </a>
+        {% endif %}
+      </div>
     </div>
+    <picture>
+      {% if mobile_image %}
+        <source
+          media="(max-width: 749px)"
+          srcset="
+            {{ mobile_image | image_url: width: 375 }} 375w,
+            {{ mobile_image | image_url: width: 550 }} 550w,
+            {{ mobile_image | image_url: width: 750 }} 750w
+          "
+        >
+      {% endif %}
+
+      {% if desktop_image %}
+        {{
+          desktop_image
+          | image_url: width: 2000
+          | image_tag: loading: 'lazy', widths: '750,1100,1500,1800,2000', sizes: '100vw', class: 'gift-banner__image'
+        }}
+      {% else %}
+        {{ 'lifestyle-2' | placeholder_svg_tag }}
+      {% endif %}
+    </picture>
   </div>
-  <picture>
-    {% if mobile_image %}
-      <source
-        media="(max-width: 749px)"
-        srcset="
-          {{ mobile_image | image_url: width: 375 }} 375w,
-          {{ mobile_image | image_url: width: 550 }} 550w,
-          {{ mobile_image | image_url: width: 750 }} 750w
-        "
-      >
-    {% endif %}
-
-    {% if desktop_image %}
-      {{
-        desktop_image
-        | image_url: width: 2000
-        | image_tag: loading: 'lazy', widths: '750,1100,1500,1800,2000', sizes: '100vw', class: 'gift-banner__image'
-      }}
-    {% else %}
-      {{ 'lifestyle-2' | placeholder_svg_tag }}
-    {% endif %}
-  </picture>
 </div>
-
 {% schema %}
 {
   "name": "Custom Banner",
@@ -232,7 +232,7 @@
       text-align: center;
       align-items: center;
     }
-    gift-banner__content-inner .rm-btn{
+    .gift-banner__content-inner .rm-btn{
       position:absolute;
       bottom: 5rem;
       z-index: 1;
