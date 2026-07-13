@@ -1,0 +1,139 @@
+{% comment %}
+  Renders a product card
+  Accepts:
+  - card_product: {Object} Product Liquid object (optional)
+{% endcomment %}
+
+{% liquid 
+  assign curr_product = product
+%}
+
+<shop-look-popup class="shop-look-popup" >
+  <div class="shop-look-popup-inner">
+    <div class="shop-look-popup__close">
+        ×
+    </div>
+    <div class="shop-look-popup__header">
+      {% if curr_product.featured_image != blank %}
+        <div class="shop-look-popup__media">
+          {{
+            curr_product.featured_image
+            | image_url: width: 540
+            | image_tag:
+            loading: 'lazy',
+            widths: '360,540'
+          }}
+        </div>
+      {% endif %}
+
+      <div class="shop-look-popup__info">
+        <div class="shop-look-popup__title">{{ curr_product.title }}</div>
+        <div class="shop-look-popup__price">{{ curr_product.price | money_with_currency }}</div>
+        <div class="shop-look-popup__description">{{ curr_product.description | truncatewords: 15 }}</div>
+      </div>
+    </div>
+    
+    {% comment %}  {% endcomment %}
+    <div class="shop-look-popup__variants">
+
+      {% for option in curr_product.options_with_values %}
+
+        {% assign option_name = option.name | downcase %}
+
+        {% if option_name == 'color' or option_name == 'colour' %}
+
+          <div class="shop-look-popup__option">
+
+            <div class="shop-look-popup__label">
+              {{ option.name }}
+            </div>
+
+            <div
+              class="shop-look-popup__color-list"
+              data-option-name="{{ option.name }}"
+              data-option-position="{{ option.position }}"
+            >
+
+              <span class="shop-look-popup__color-pill"></span>
+              {% for value in option.values %}
+                <div
+                  class="shop-look-popup__color {% if option.selected_value == value %}active{% endif %}"
+                  data-value="{{ value }}"
+                  data-color="{{ value }}"
+                >
+                  <span class="shop-look-popup__color-strip" style="background:{{ value }}"></span>
+                  <span class="shop-look-popup__color-strip-top" style="background:{{ value }}"></span>
+                  <span class="shop-look-popup__color-name">
+                    {{ value }}
+                  </span>
+                </div>
+
+              {% endfor %}
+
+            </div>
+
+          </div>
+
+        {% else %}
+
+          <div class="shop-look-popup__option">
+
+            <div class="shop-look-popup__label">
+              {{ option.name }}
+            </div>
+
+            <div
+              class="shop-look-popup__dropdown"
+              data-option-name="{{ option.name }}"
+              data-option-position="{{ option.position }}"
+            >
+
+              <div class="shop-look-popup__dropdown-trigger">
+
+                <span class="shop-look-popup__dropdown-value">
+                  {{ option.selected_value }}
+                </span>
+                <span class="shop-look-popup__dropdown-arrow">
+                {% render 'icon-caret' %}
+                </span>
+              </div>
+
+              <div class="shop-look-popup__dropdown-menu">
+
+                {% for value in option.values %}
+
+                  <div
+                    class="shop-look-popup__dropdown-item {% if option.selected_value == value %}active{% endif %}"
+                    data-value="{{ value }}"
+                  >
+                    {{ value }}
+                  </div>
+
+                {% endfor %}
+
+              </div>
+
+            </div>
+
+          </div>
+
+        {% endif %}
+
+      {% endfor %}
+
+      <input
+        type="hidden"
+        class="shop-look-current-variant"
+        value="{{ curr_product.selected_or_first_available_variant.id }}"
+      >
+
+    </div>
+    <a
+      href="{{ section.settings.button_link }}"
+      class="rm-btn rm-btn--primary shop-look-popup__add-to-cart"
+    >
+      <span> Add to cart</span>
+      {% render 'icon-arrow-right' %}
+    </a> 
+  </div>
+</shop-look-popup>

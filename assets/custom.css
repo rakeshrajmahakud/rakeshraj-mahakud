@@ -16,7 +16,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 1.2rem;
+  gap: 2.2rem;
   padding: 1.4rem 3rem;
   font-size: 1.6rem;
   font-weight: 400;
@@ -29,16 +29,19 @@
   z-index: 1;
   width: fit-content;
 }
+
 .rm-btn span,
 .rm-btn svg {
   position: relative;
   z-index: 2;
 }
+
 .rm-btn svg {
-  width: 2rem;
+  width: 3rem;
   height: 2rem;
   transition: transform 0.35s ease;
 }
+
 .rm-btn::before {
   content: '';
   position: absolute;
@@ -47,6 +50,7 @@
   transform: translateX(-101%);
   transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+
 .rm-btn:hover::before {
   transform: translateX(0);
   transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -57,15 +61,19 @@
   background: var(--rm-btn-bg);
   color: var(--rm-btn-color);
 }
+
 .rm-btn--primary::before {
   background: var(--rm-btn-hover-bg);
 }
+
 .rm-btn--primary:hover {
   color: var(--rm-btn-hover-color);
 }
+
 .rm-btn--primary.rm-btn svg path{
   fill:  var(--rm-btn-color);
 }
+
 .rm-btn--primary.rm-btn:hover svg path{ 
   fill:  var(--rm-btn-bg);
 }
