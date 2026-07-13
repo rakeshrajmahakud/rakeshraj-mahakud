@@ -119,8 +119,10 @@
       ],
       "name": "Shop the Look Section",
       "settings": {
-        "heading": "Shop the look",
-        "addon_product": "dark-winter-jacket"
+        "heading": "Tisso vison in the wild",
+        "addon_product": "dark-winter-jacket",
+        "padding_top": 30,
+        "padding_bottom": 51
       }
     }
   },
