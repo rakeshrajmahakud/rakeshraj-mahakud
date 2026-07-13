@@ -50,11 +50,84 @@
         "padding_top": 10,
         "padding_bottom": 10
       }
+    },
+    "shop_the_look_U9CDPi": {
+      "type": "shop-the-look",
+      "blocks": {
+        "look_jXgymc": {
+          "type": "look",
+          "settings": {
+            "image": "shopify://shop_images/young-female-models-denim_925x_44c2cf9e-4030-4347-9d4a-f0e4a1479b4a.jpg",
+            "product": "dark-denim-top",
+            "x": 80,
+            "y": 46
+          }
+        },
+        "look_rDBTjj": {
+          "type": "look",
+          "settings": {
+            "image": "shopify://shop_images/casual-fashion-woman_925x_56b56608-f207-45c1-b677-bb5aa26c1c7a.jpg",
+            "product": "classic-varsity-top",
+            "x": 50,
+            "y": 30
+          }
+        },
+        "look_p8VYqY": {
+          "type": "look",
+          "settings": {
+            "image": "shopify://shop_images/leather-jacket-and-tea_925x_2490cde1-7e61-4151-9a65-de8a763bc701.jpg",
+            "product": "classic-leather-jacket",
+            "x": 80,
+            "y": 21
+          }
+        },
+        "look_ANxypP": {
+          "type": "look",
+          "settings": {
+            "image": "shopify://shop_images/red-plaid-shirt_925x_70e9e5a8-8fc5-4d60-9a9a-cc2e0dd57cc9.jpg",
+            "product": "chequered-red-shirt",
+            "x": 61,
+            "y": 23
+          }
+        },
+        "look_qqm9Fd": {
+          "type": "look",
+          "settings": {
+            "image": "shopify://shop_images/man-adjusts-blue-tuxedo-bowtie_925x_55a49e12-d54b-488e-b7a0-ea4c201eb01f.jpg",
+            "product": "blue-silk-tuxedo",
+            "x": 87,
+            "y": 52
+          }
+        },
+        "look_My8Dj7": {
+          "type": "look",
+          "settings": {
+            "image": "shopify://shop_images/black-bag-over-the-shoulder_925x_4cae5708-5e9e-4e7e-96ec-9649f0c20cd8.jpg",
+            "product": "black-leather-bag",
+            "x": 57,
+            "y": 59
+          }
+        }
+      },
+      "block_order": [
+        "look_jXgymc",
+        "look_rDBTjj",
+        "look_p8VYqY",
+        "look_ANxypP",
+        "look_qqm9Fd",
+        "look_My8Dj7"
+      ],
+      "name": "Shop the Look Section",
+      "settings": {
+        "heading": "Shop the look",
+        "addon_product": "dark-winter-jacket"
+      }
     }
   },
   "order": [
     "custom_header_bar_JP8exK",
     "custom_banner_LyxXyR",
-    "custom_rich_text_QxV3jW"
+    "custom_rich_text_QxV3jW",
+    "shop_the_look_U9CDPi"
   ]
 }

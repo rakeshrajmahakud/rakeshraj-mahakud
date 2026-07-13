@@ -1,0 +1,116 @@
+{{ 'shop-the-look.css' | asset_url | stylesheet_tag }}
+
+<div class="page-width">
+  {% if section.settings.heading != blank %}
+    <h2 class="title">{{ section.settings.heading }}</h2>
+  {% endif %}
+
+  <div class="grid grid--2-col-tablet-down grid--3-col-desktop">
+    {% for block in section.blocks %}
+
+      {% assign product = block.settings.product %}
+      <div class="grid__item">
+        {% if block.settings.image != blank %}
+          <shop-look-card class="shop-look-card" >
+            <script type="application/json" class="shop-look-product-data">
+              {
+                "id": {{ product.id }},
+                "title": {{ product.title | json }},
+                "variants": {{ product.variants | json }}
+              }
+            </script>
+            {% comment %} passing add on product data {% endcomment %}
+            <input type="hidden" class="shop-look-addon-product" value="{{ section.settings.addon_product.selected_or_first_available_variant.id }}">
+
+            {{
+              block.settings.image
+              | image_url: width: 900
+              | image_tag:
+              loading: 'lazy',
+              widths: '360,540,720,900'
+            }}
+
+            {% if product != blank %}
+              <button
+                class="shop-look-hotspot"
+                style="
+                  left:{{ block.settings.x }}%;
+                  top:{{ block.settings.y }}%;
+                "
+                aria-label="Open product"
+              >
+                +
+              </button>
+
+              {% render 'shop-the-look-card', product: product  %}
+            {% endif %}
+          </shop-look-card>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Shop the Look Section",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type":"text",
+      "id":"heading",
+      "label":"Heading",
+      "default":"Shop the look"
+    },
+    {
+      "type": "product",
+      "id": "addon_product",
+      "label": "Addon Product"
+    }
+  ],
+  "blocks":[
+    {
+      "type":"look",
+      "name":"Look",
+      "settings":[
+        {
+          "type":"image_picker",
+          "id":"image",
+          "label":"Image"
+        },
+        {
+          "type":"product",
+          "id":"product",
+          "label":"Product"
+        },
+        {
+          "type":"range",
+          "id":"x",
+          "label":"Horizontal Position",
+          "min":0,
+          "max":100,
+          "step":1,
+          "unit":"%",
+          "default":50
+        },
+        {
+          "type":"range",
+          "id":"y",
+          "label":"Vertical Position",
+          "min":0,
+          "max":100,
+          "step":1,
+          "unit":"%",
+          "default":50
+        }
+      ]
+    }
+  ],
+  "presets":[
+    {
+      "name":"Shop the Look Section"
+    }
+  ]
+}
+{% endschema %}

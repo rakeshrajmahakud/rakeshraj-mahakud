@@ -1,0 +1,257 @@
+.shop-look-card{
+  position:relative;
+  overflow:hidden;
+}
+
+.shop-look-card img{
+  width:100%;
+  height: 100%;
+  display:block;
+  object-fit: cover;
+  aspect-ratio: 1/1;
+}
+
+.shop-look-hotspot{
+  position:absolute;
+  transform:translate(-50%,-50%);
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  border:0;
+  background:#fff;
+  cursor:pointer;
+  font-size:17px;
+  line-height:1;
+  z-index:2;
+}
+
+.shop-look-popup{
+  position:fixed;
+  opacity:0;
+  visibility:hidden;
+  transition: opacity .3s, visibility .3s;
+  z-index:5;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #06060645;
+}
+
+.shop-look-card.active .shop-look-popup{
+  opacity:1;
+  visibility:visible;
+}
+
+.shop-look-popup-inner{
+  position: relative;
+  padding: 36px 20px 25px 20px;
+  background: #fff;
+  box-shadow: 0px 2px 4px 0px #00000033;
+  width:min(350px,calc(100vw - 40px));
+  max-width: 350px;
+}
+
+.shop-look-popup .card{
+  margin:0;
+}
+
+.shop-look-popup__header{
+  display: grid;
+  grid-template-columns: 45% auto;
+  gap: 8px;
+}
+
+.shop-look-popup__description p{
+  font-size: 14px;
+  line-height: normal;
+}
+
+.shop-look-popup__title{
+  margin-bottom: 6px;
+  line-height: normal;
+}
+
+.shop-look-popup__close{
+  position: absolute;
+  top: 8px;
+  right: 15px;
+  font-size: 22px;
+  line-height: 1;
+  cursor : pointer;
+}
+
+
+/* =====Variant Section===== */
+
+.shop-look-popup__variants{
+  margin-top:24px;
+}
+
+.shop-look-popup__option:not(:last-child){
+  margin-bottom:18px;
+}
+
+.shop-look-popup__label{
+  display:block;
+  margin-bottom:8px;
+  font-size:14px;
+  line-height:1.2;
+}
+
+
+/* ====Color Picker==== */
+
+.shop-look-popup__color-list{
+  position:relative;
+  display:flex;
+  width:100%;
+  border:1px solid #000;
+  overflow:hidden;
+  background:#fff;
+}
+
+.shop-look-popup__color-pill{
+  position:absolute;
+  top:0;
+  left:0;
+  width:0;
+  height:100%;
+  background:#000;
+  z-index:1; 
+  transition:
+    transform .35s cubic-bezier(.65,0,.35,1),
+    width .35s cubic-bezier(.65,0,.35,1);
+
+}
+
+.shop-look-popup__color-strip,
+.shop-look-popup__color-strip-top
+{
+  position:absolute;
+  left:0;
+  top:0;
+  width:6px;
+  height:100%;
+  z-index:0;
+  border-left:1px solid #000;
+  border-right:1px solid #000;
+}
+
+.shop-look-popup__color{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:48px;
+  cursor:pointer;
+  user-select:none;
+  transition:color .25s ease;
+  font-size:15px;
+  line-height:1;
+  position: relative;
+}
+
+
+.shop-look-popup__color.active{
+  color:#fff;
+}
+
+.shop-look-popup__color.active .shop-look-popup__color-name{
+  z-index: 1;
+}
+
+/* ======Custom Dropdown====== */
+
+.shop-look-popup__dropdown{
+  position:relative;
+}
+
+.shop-look-popup__dropdown-trigger{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  min-height:48px;
+  padding:0 0 0 16px;
+  border:1px solid #000;
+  background:#fff;
+  cursor:pointer;
+  user-select:none;
+}
+
+.shop-look-popup__dropdown-value{
+  font-size:15px;
+  line-height:1;
+}
+
+.shop-look-popup__dropdown-arrow{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: 1px solid #000;
+  width: 70px;
+  min-height: 45px;
+}
+
+.shop-look-popup__dropdown-trigger svg{
+  width:14px;
+  height:14px;
+  transition:transform .25s ease;
+}
+
+.shop-look-popup__dropdown.is-open .shop-look-popup__dropdown-trigger svg{
+  transform:rotate(180deg);
+}
+
+
+/* =====Dropdown Menu====== */
+
+.shop-look-popup__dropdown-menu{
+  position:absolute;
+  top:calc(100% + 4px);
+  left:0;
+  right:0;
+  background:#fff;
+  border:1px solid #d9d9d9;
+  box-shadow:0 8px 24px rgba(0,0,0,.08);
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(8px);
+  transition: opacity .25s, transform .25s, visibility .25s;
+  max-height:220px;
+  overflow-y:auto;
+  z-index:2;
+}
+
+.shop-look-popup__dropdown.is-open .shop-look-popup__dropdown-menu{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+
+.shop-look-popup__dropdown-item{
+  padding:14px 16px;
+  cursor:pointer;
+  font-size:15px;
+  transition:.2s;
+}
+
+.shop-look-popup__dropdown-item:hover{
+  background:#000;
+  color: #fff;
+}
+
+.shop-look-popup__dropdown-item.active{
+  background:#dfdfdf;
+  color:#000;
+}
+
+.shop-look-popup__add-to-cart{
+  margin-top: 3rem;
+  width: 100%;
+}
+
